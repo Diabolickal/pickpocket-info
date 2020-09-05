@@ -1,7 +1,7 @@
 # Pickpocket Info
-[Overlay Preview](https://u.cubeupload.com/Diabolickal/pickpocketoverlay.png)
+![Overlay Preview](https://u.cubeupload.com/Diabolickal/pickpocketoverlay.png)
 
-# #What that plugin does
+## What that plugin does
 * Shows you the number of Dodgy Necklace charges
 * Shows your pickpocketing success rate in realtime
 * Shows you how many Coin Pouches you're carrying, if applicable
@@ -17,3 +17,5 @@
     * How long, in seconds, should the overlay remain in between pickpockets. 0 = Never goes away.
 * Reset Rate
     * This determines when this plugin will reset your rate calculation. You can set it to on Logout or on Runelite Exit.
+
+If you come across any bugs or have suggestions don't be afraid to submit a new issue in this repository.
