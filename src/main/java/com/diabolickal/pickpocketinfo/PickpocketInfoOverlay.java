@@ -48,6 +48,10 @@ public class PickpocketInfoOverlay extends OverlayPanel
                     .text("Pickpocketing")
                     .color(Color.WHITE)
                     .build());
+            panelComponent.getChildren().add(LineComponent.builder()
+                    .left("Rate")
+                    .right(String.format("%.1f",plugin.percent())+"%")
+                    .build());
             if(config.showDodgy())
             {
                 panelComponent.getChildren().add(LineComponent.builder()
@@ -57,10 +61,6 @@ public class PickpocketInfoOverlay extends OverlayPanel
                         .rightColor(plugin.dodgyCharges() <= config.warnThreshold() && plugin.hasDodgy() ? Color.RED : Color.WHITE)
                         .build());
             }
-            panelComponent.getChildren().add(LineComponent.builder()
-                    .left("Rate")
-                    .right(String.format("%.1f",plugin.percent())+"%")
-                    .build());
             if(config.showPouches() && plugin.targetHasPouches())
             {
                 panelComponent.getChildren().add(LineComponent.builder()
@@ -70,7 +70,6 @@ public class PickpocketInfoOverlay extends OverlayPanel
                         .rightColor(plugin.pouchNum() >= 27 ? Color.RED : Color.WHITE)
                         .build());
             }
-
         }
         return super.render(graphics);
     }

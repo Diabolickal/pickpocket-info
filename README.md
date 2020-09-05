@@ -1,5 +1,5 @@
 # Pickpocket Info
-![Overlay Preview](https://u.cubeupload.com/Diabolickal/pickpocketoverlay.png)
+![Overlay Preview](http://u.cubeupload.com/Diabolickal/pickpocketoverlay1.png) ![Overlay Preview](http://u.cubeupload.com/Diabolickal/pickpocketoverlay2.png)
 
 ## What that plugin does
 * Shows you the number of Dodgy Necklace charges
@@ -10,7 +10,7 @@
 * Toggle Dodgy Necklace charges.
     * Some of you Level 99s don't need fancy jewelry to pickpocket.
 * Toggle Pouches Counter
-    * This  plugin is smart enough to not show it if the NPC doesn't drop them.
+    * This  plugin is smart enough to not show it if the NPC doesn't drop them but, you can turn it off completely if you like.
 * Warning Threshold
     * This determines when the text on the overlay turns red when your charges drop to or below this threshold.
 * Overlay Duration
