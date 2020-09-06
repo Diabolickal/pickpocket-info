@@ -2,8 +2,8 @@
 ![Overlay Preview](http://u.cubeupload.com/Diabolickal/pickpocketoverlay1.png) ![Overlay Preview](http://u.cubeupload.com/Diabolickal/pickpocketoverlay2.png)
 
 ## What that plugin does
-* Shows you the number of Dodgy Necklace charges
 * Shows your pickpocketing success rate in realtime
+* Shows you the number of Dodgy Necklace charges
 * Shows you how many Coin Pouches you're carrying, if applicable
 
 ## Customization

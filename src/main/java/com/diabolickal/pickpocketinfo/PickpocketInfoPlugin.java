@@ -203,6 +203,7 @@ public class PickpocketInfoPlugin extends Plugin
     }
 
     //Encapsulation stuff
+    public float attempts() {return  attempts; }
     public float percent()
     {
         return percent;

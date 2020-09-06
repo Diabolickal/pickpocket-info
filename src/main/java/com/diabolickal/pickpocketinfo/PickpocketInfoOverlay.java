@@ -70,6 +70,13 @@ public class PickpocketInfoOverlay extends OverlayPanel
                         .rightColor(plugin.pouchNum() >= 27 ? Color.RED : Color.WHITE)
                         .build());
             }
+            /*if(config.showTotal())
+            {
+                panelComponent.getChildren().add(LineComponent.builder()
+                        .left("Total")
+                        .right(""+(int)plugin.attempts())
+                        .build());
+            }*/
         }
         return super.render(graphics);
     }

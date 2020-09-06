@@ -31,6 +31,17 @@ public interface PickpocketInfoConfig extends Config
         return true;
     }
 
+    /*@ConfigItem(
+            keyName = "showTotal",
+            name = "Show Total Attempts",
+            description = "Whether or not to display the total number of pickpockets includes both successful and unsuccessful.",
+            position = 2
+    )
+    default boolean showTotal()
+    {
+        return true;
+    }*/
+
     @Range(
             min = 1,
             max = 10
@@ -39,7 +50,7 @@ public interface PickpocketInfoConfig extends Config
             keyName = "warnThreshold",
             name = "Warning Threshold",
             description = "At how many dodgy necklace charges should the overlay text turn red.",
-            position = 2
+            position = 3
     )
     default int warnThreshold(){ return 1;}
 
@@ -50,7 +61,7 @@ public interface PickpocketInfoConfig extends Config
             keyName = "overlayDuration",
             name = "Overlay Duration",
             description = "How long the overlay lasts between pickpockets in seconds. Zero means overlay will never go away.",
-            position = 3
+            position = 4
     )
     default int overlayDuration(){ return 10;}
 
@@ -58,7 +69,7 @@ public interface PickpocketInfoConfig extends Config
             keyName = "resetType",
             name = "Reset Rate on",
             description = "When to reset the timer. On logout or upon exiting Runelite.",
-            position = 4
+            position = 5
     )
     default ResetType resetType()
     {
