@@ -1,9 +1,6 @@
 package com.diabolickal.pickpocketinfo;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.Range;
+import net.runelite.client.config.*;
 
 @ConfigGroup("Pickpocket Info")
 public interface PickpocketInfoConfig extends Config
@@ -31,16 +28,16 @@ public interface PickpocketInfoConfig extends Config
         return true;
     }
 
-    /*@ConfigItem(
-            keyName = "showTotal",
-            name = "Show Total Attempts",
-            description = "Whether or not to display the total number of pickpockets includes both successful and unsuccessful.",
+    @ConfigItem(
+            keyName = "showSessionTotal",
+            name = "Show Attempts",
+            description = "Whether or not to display the number of pickpocket attempts for this session",
             position = 2
     )
-    default boolean showTotal()
+    default boolean showSessionTotal()
     {
-        return true;
-    }*/
+        return false;
+    }
 
     @Range(
             min = 1,
@@ -50,7 +47,7 @@ public interface PickpocketInfoConfig extends Config
             keyName = "warnThreshold",
             name = "Warning Threshold",
             description = "At how many dodgy necklace charges should the overlay text turn red.",
-            position = 3
+            position = 4
     )
     default int warnThreshold(){ return 1;}
 
@@ -61,7 +58,7 @@ public interface PickpocketInfoConfig extends Config
             keyName = "overlayDuration",
             name = "Overlay Duration",
             description = "How long the overlay lasts between pickpockets in seconds. Zero means overlay will never go away.",
-            position = 4
+            position = 5
     )
     default int overlayDuration(){ return 10;}
 
@@ -69,13 +66,45 @@ public interface PickpocketInfoConfig extends Config
             keyName = "resetType",
             name = "Reset Rate on",
             description = "When to reset the timer. On logout or upon exiting Runelite.",
-            position = 5
+            position = 6
     )
     default ResetType resetType()
     {
         return ResetType.EXIT;
     }
 
+    /* ======== Extras Dropdown ======== */
+    @ConfigSection(
+            name = "Extra Stats",
+            description = "Settings for showing extra, 'fun', stats",
+            position = 7
+    )
+    String showExtras = "Show Extra";
+
+
+    @ConfigItem(
+            keyName = "showBrokenDodgys",
+            name = "Show Broken Dodgy Counter",
+            description = "Whether or not to display the number of dodgy necklaces you've broken.",
+            section = showExtras,
+            position = 8
+    )
+    default boolean showBrokenDodgys()
+    {
+        return false;
+    }
+
+    @ConfigItem(
+            keyName = "showPouchesTotal",
+            name = "Show Total Pouches",
+            description = "Whether or not to display the number of total pouches you've stolen.",
+            section = showExtras,
+            position = 9
+    )
+    default boolean showPouchesTotal()
+    {
+        return false;
+    }
 
 
     /*===HIDDEN===*/
@@ -99,6 +128,24 @@ public interface PickpocketInfoConfig extends Config
     )
     void dodgyNecklace(int dodgyNecklace);
 
+    //Keeps track of total pickpocket attempts
+    @ConfigItem(
+            keyName = "totalAttempts",
+            name = "",
+            description = "",
+            hidden = true
+    )
+    default int totalAttempts()
+    {
+        return 0;
+    }
+
+    @ConfigItem(
+            keyName = "totalAttempts",
+            name = "",
+            description = ""
+    )
+    void totalAttempts(int totalAttempts);
 
 }
 

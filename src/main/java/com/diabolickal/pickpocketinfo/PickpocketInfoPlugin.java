@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 public class PickpocketInfoPlugin extends Plugin
 {
     private float attempts, passes, percent;
-    private int dodgyCharges = -1, pouchNum;
+    private int dodgyCharges = -1, pouchNum, brokenDodgy, totalPouches, lastPouchNum;
     private String lastTarget;
     private Instant lastPickpocket;
     private boolean hasDodgy, targetHasPouches;
@@ -124,6 +124,7 @@ public class PickpocketInfoPlugin extends Plugin
     {
         attempts = 0.0f;
         passes = 0.0f;
+        brokenDodgy = 0;
         targetHasPouches = false;
     }
 
@@ -152,6 +153,7 @@ public class PickpocketInfoPlugin extends Plugin
         else if(dodgyBreak.find())
         {
             dodgyCharges = 10;
+            brokenDodgy++;
             config.dodgyNecklace(dodgyCharges);
         }
     }
@@ -167,9 +169,14 @@ public class PickpocketInfoPlugin extends Plugin
             {
                 pouchNum = items[i].getQuantity();
                 targetHasPouches = true;
+
                 break;
             }
         }
+        if(pouchNum > lastPouchNum)
+            totalPouches++;
+
+        lastPouchNum = pouchNum;
     }
 
     private void CheckPickpocket(ChatMessage chatMessage)
@@ -199,6 +206,8 @@ public class PickpocketInfoPlugin extends Plugin
     {
         attempts = 0.0f;
         passes = 0.0f;
+        totalPouches = 0;
+        brokenDodgy = 0;
         targetHasPouches = false;
     }
 
@@ -228,5 +237,7 @@ public class PickpocketInfoPlugin extends Plugin
     {
         return targetHasPouches;
     }
+    public int brokenDodgy(){return  brokenDodgy;}
+    public int totalPouches(){return  totalPouches;}
 
 }

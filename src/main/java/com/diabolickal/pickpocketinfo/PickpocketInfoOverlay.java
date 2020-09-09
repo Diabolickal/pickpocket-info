@@ -36,7 +36,7 @@ public class PickpocketInfoOverlay extends OverlayPanel
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        String charges = "";
+        String charges = "?";
         if(plugin.dodgyCharges() >= 0)
             charges = ""+plugin.dodgyCharges();
         if(!plugin.hasDodgy())
@@ -45,13 +45,20 @@ public class PickpocketInfoOverlay extends OverlayPanel
         if(plugin.lastPickpocket() != null && (config.overlayDuration() <1  || Duration.between(plugin.lastPickpocket(), Instant.now()).getSeconds() < config.overlayDuration()))
         {
             panelComponent.getChildren().add(TitleComponent.builder()
-                    .text("Pickpocketing")
+                    .text("Pickpocket Info")
                     .color(Color.WHITE)
                     .build());
             panelComponent.getChildren().add(LineComponent.builder()
                     .left("Rate")
                     .right(String.format("%.1f",plugin.percent())+"%")
                     .build());
+            if(config.showSessionTotal())
+            {
+                panelComponent.getChildren().add(LineComponent.builder()
+                        .left("Attempts")
+                        .right(String.format("%.0f",plugin.attempts()))
+                        .build());
+            }
             if(config.showDodgy())
             {
                 panelComponent.getChildren().add(LineComponent.builder()
@@ -70,13 +77,20 @@ public class PickpocketInfoOverlay extends OverlayPanel
                         .rightColor(plugin.pouchNum() >= 27 ? Color.RED : Color.WHITE)
                         .build());
             }
-            /*if(config.showTotal())
+            if(config.showBrokenDodgys())
             {
                 panelComponent.getChildren().add(LineComponent.builder()
-                        .left("Total")
-                        .right(""+(int)plugin.attempts())
+                        .left("Broken Dodgies")
+                        .right((String.format("%d",plugin.brokenDodgy())))
                         .build());
-            }*/
+            }
+            if(config.showPouchesTotal())
+            {
+                panelComponent.getChildren().add(LineComponent.builder()
+                        .left("Total Pouches")
+                        .right((String.format("%d",plugin.totalPouches())))
+                        .build());
+            }
         }
         return super.render(graphics);
     }
