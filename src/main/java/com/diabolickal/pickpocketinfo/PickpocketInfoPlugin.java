@@ -1,6 +1,7 @@
 package com.diabolickal.pickpocketinfo;
 
 import com.google.inject.Provides;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.ChatMessage;
@@ -34,6 +35,10 @@ public class PickpocketInfoPlugin extends Plugin
     private String lastTarget;
     private Instant lastPickpocket;
     private boolean hasDodgy, targetHasPouches;
+    @Getter
+    private int bestStreak = 0;
+    @Getter
+    private int currentStreak = 0;
 
     private static final Pattern DODGY_CHECK_PATTERN = Pattern.compile(
             "Your dodgy necklace has (\\d+) charges? left\\.");
@@ -126,6 +131,8 @@ public class PickpocketInfoPlugin extends Plugin
         passes = 0.0f;
         brokenDodgy = 0;
         targetHasPouches = false;
+        currentStreak = 0;
+        bestStreak = 0;
     }
 
 
@@ -196,9 +203,17 @@ public class PickpocketInfoPlugin extends Plugin
             lastTarget = pickTarget;
         }
         if (msg.contains("you pick the"))
+        {
             passes += 1.0f;
-        if (msg.contains("you pick the") || msg.contains("you fail to pick"))
+            currentStreak += 1;
+            bestStreak = Math.max(bestStreak, currentStreak);
             percent = (passes / attempts) * 100;
+        }
+        if (msg.contains("you fail to pick"))
+        {
+            percent = (passes / attempts) * 100;
+            currentStreak = 0;
+        }
     }
 
     //Called when the pickpocket target changes
@@ -209,6 +224,8 @@ public class PickpocketInfoPlugin extends Plugin
         totalPouches = 0;
         brokenDodgy = 0;
         targetHasPouches = false;
+        currentStreak = 0;
+        bestStreak = 0;
     }
 
     //Encapsulation stuff

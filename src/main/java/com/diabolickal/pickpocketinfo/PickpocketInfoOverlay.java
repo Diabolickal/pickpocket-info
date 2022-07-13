@@ -91,6 +91,20 @@ public class PickpocketInfoOverlay extends OverlayPanel
                         .right((String.format("%d",plugin.totalPouches())))
                         .build());
             }
+            if (config.showBestStreak())
+            {
+                panelComponent.getChildren().add(LineComponent.builder()
+                    .left("Best Streak")
+                    .right((String.format("%d",plugin.getBestStreak())))
+                    .build());
+            }
+            if(config.showCurrentStreak())
+            {
+                panelComponent.getChildren().add(LineComponent.builder()
+                    .left("Current Streak")
+                    .right((String.format("%d",plugin.getCurrentStreak())))
+                    .build());
+            }
         }
         return super.render(graphics);
     }
