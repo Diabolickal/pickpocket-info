@@ -212,6 +212,9 @@ public class PickpocketInfoPlugin extends Plugin
         if (msg.contains("you fail to pick"))
         {
             percent = (passes / attempts) * 100;
+        }
+        if (msg.contains("been stunned"))
+        {
             currentStreak = 0;
         }
     }
