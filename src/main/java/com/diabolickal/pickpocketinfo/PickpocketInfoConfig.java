@@ -106,6 +106,30 @@ public interface PickpocketInfoConfig extends Config
         return false;
     }
 
+    @ConfigItem(
+        keyName = "showBestStreak",
+        name = "Show Best Success Streak",
+        description = "Whether or not to show your best pickpocket streak",
+        section = showExtras,
+        position = 10
+    )
+    default boolean showBestStreak()
+    {
+        return false;
+    }
+
+    @ConfigItem(
+        keyName = "showCurrentStreak",
+        name = "Show Current Success Streak",
+        description = "Whether or not to show your current pickpocket streak",
+        section = showExtras,
+        position = 11
+    )
+    default boolean showCurrentStreak()
+    {
+        return false;
+    }
+
 
     /*===HIDDEN===*/
 
