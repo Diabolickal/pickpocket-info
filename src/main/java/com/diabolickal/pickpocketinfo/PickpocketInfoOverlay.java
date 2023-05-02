@@ -1,6 +1,7 @@
 package com.diabolickal.pickpocketinfo;
 
 import net.runelite.api.Client;
+import net.runelite.api.Varbits;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -70,11 +71,22 @@ public class PickpocketInfoOverlay extends OverlayPanel
             }
             if(config.showPouches() && plugin.targetHasPouches())
             {
+                int maxNumberOfPouches;
+                if (client.getVarbitValue(Varbits.DIARY_ARDOUGNE_ELITE) > 0) {
+                    maxNumberOfPouches = 140;
+                } else if (client.getVarbitValue(Varbits.DIARY_ARDOUGNE_HARD) > 0) {
+                    maxNumberOfPouches = 84;
+                } else if (client.getVarbitValue(Varbits.DIARY_ARDOUGNE_MEDIUM) > 0) {
+                    maxNumberOfPouches = 56;
+                } else {
+                    maxNumberOfPouches = 28;
+                }
+                Color pouchColor = plugin.pouchNum() >= maxNumberOfPouches - 1 ? Color.RED : Color.WHITE;
                 panelComponent.getChildren().add(LineComponent.builder()
                         .left("Pouches")
-                        .leftColor(plugin.pouchNum() >= 27 ? Color.RED : Color.WHITE)
+                        .leftColor(pouchColor)
                         .right(""+plugin.pouchNum())
-                        .rightColor(plugin.pouchNum() >= 27 ? Color.RED : Color.WHITE)
+                        .rightColor(pouchColor)
                         .build());
             }
             if(config.showBrokenDodgys())
